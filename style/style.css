@@ -1,0 +1,56 @@
+* {
+    background-color: rgb(25, 25, 25);
+    color: white;
+}
+
+h1 {
+    border-bottom: 2px solid white;
+    margin: auto;
+    text-align: center;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 50px;
+}
+
+img#icone{
+    width: 42px;
+    padding: 3px;
+    margin-top: auto;
+
+    display: inline-block;
+    position: absolute;
+    
+}
+
+div#boxc {
+    border: 2px solid white;
+    margin: auto;
+    margin-top: 50px;
+    width: 800px;
+    height: auto;
+}
+
+div#summ {
+    display: inline-block;
+}
+
+p#user {
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: 50px;
+    margin-top: 10px;
+    display: inline-block;
+    position: absolute;
+}
+
+p#timing {
+    font-size: 12px;
+    margin-left: 50px;
+    margin-top: 30px;
+    display: inline-block;
+    position: absolute;
+}
