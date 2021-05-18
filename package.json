@@ -1,0 +1,29 @@
+{
+  "name": "MAL-Social",
+  "version": "1.0.0",
+  "description": "Otaku Social Network",
+  "main": "index.js",
+  "repository": "git@github.com:lucasbrambila/MAL-Social.git",
+  "author": "CoutoDev <c.svitor@yahoo.com.br>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.4",
+    "css-minimizer-webpack-plugin": "^3.0.0",
+    "html-loader": "^2.1.2",
+    "html-webpack-plugin": "^5.3.1",
+    "mini-css-extract-plugin": "^1.6.0",
+    "sass": "^1.32.13",
+    "sass-loader": "^11.1.1",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.37.0",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "scripts": {
+    "build": "webpack",
+    "dev-server": "webpack server"
+  }
+}
