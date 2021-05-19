@@ -38,6 +38,15 @@ div#summ {
     display: inline-block;
 }
 
+div#loginbox {
+    border: 2px solid white;
+    margin: auto;
+    margin-top: 50px;
+    width: 400px;
+    height: auto;
+    text-align: center;
+}
+
 p#user {
     font-size: 18px;
     font-weight: 600;
