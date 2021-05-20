@@ -6,7 +6,7 @@ module.exports = {
 	entry: './src/index.js',
 
 	output: {
-		assetModuleFilename: '[name][ext]'
+		assetModuleFilename: '[name][hash][ext]'
 	},
 	plugins: [
 		new MiniCssExtractPlugin(),
