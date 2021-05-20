@@ -5,6 +5,9 @@ const HtmlWebPackPlugin = require('html-webpack-plugin')
 module.exports = {
 	entry: './src/index.js',
 
+	output: {
+		assetModuleFilename: '[name][ext]'
+	},
 	plugins: [
 		new MiniCssExtractPlugin(),
 		new HtmlWebPackPlugin({
@@ -32,6 +35,18 @@ module.exports = {
 					'postcss-loader'
 				],
 			},
+			{
+				test: /\.html$/,
+				use: ["html-loader"]
+			},
+			{
+				test: /\.(png|jpg|gif)$/,
+				type: 'asset/resource'
+			},
+			{
+				test: /\.svg$/,
+				type: 'asset/inline'
+			}
 		],
 	},
 
