@@ -4,3 +4,9 @@ $bg-color: rgba(79, 40, 218, 0.589);
     background-color: $bg-color;
     color: white;
 }
+
+.boxc {
+    display: flex;
+    padding: 1rem;
+    background: linear-gradient(to top, black, white);
+}

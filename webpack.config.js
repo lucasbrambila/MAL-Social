@@ -1,82 +1,51 @@
 const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const HtmlWebPackPlugin = require('html-webpack-plugin')
 
-let plugins = [];
-
-plugins.push(
-	new HtmlWebpackPlugin({
-		hash: true,
-		minify: {
-			html5: true,
-			collapseWhitespace: true,
-			removeComments: true,
-		},
-		filename: 'index.html',
-		template: __dirname + '/main.html',
-	})
-);
-
-let SERVICE_URL = JSON.stringify('http://localhost:3000');
-
-if (process.env.NODE_ENV === 'production') {
-	SERVICE_URL = JSON.stringify('http://minha-api');
-	plugins.push(new webpack.optimize.ModuleConcatenationPlugin());
-
-	plugins.push(
-		new CssMinimizerPlugin({
-			minimizerOptions: {
-				preset: [
-					'default',
-					{
-						discardComments: { removeAll: true },
-					},
-				],
-			},
-		})
-	);
-}
-
-plugins.push(new webpack.DefinePlugin({ SERVICE_URL }));
+const mode =
+	process.env.NODE_ENV === 'production' ? 'production' : 'development';
 
 module.exports = {
-	mode: 'none',
+	mode: mode,
+
 	entry: './src/index.js',
 	output: {
-		path: __dirname + '/dist',
-		filename: 'bundle.js',
+		filename: 'bundle.[contentHash].js',
+		path: path.resolve(__dirname, 'dist'),
 	},
-	devtool: 'eval-cheap-module-source-map',
-	devServer: {
-		contentBase: path.join(__dirname, 'dist'),
-	},
+
+	plugins: [
+		new MiniCssExtractPlugin(),
+		new HtmlWebPackPlugin({
+			template: "./src/template.html"
+		})
+	],
+
 	module: {
 		rules: [
-			{
-				test: /\.s[ac]ss$/i,
-				use: [
-					MiniCssExtractPlugin.loader,
-					'style-loader',
-					'css-loader',
-					'sass-loader',
-				],
-			},
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
 				use: {
+					// whithout additional settings, this will reference .babelrc
 					loader: 'babel-loader',
-					options: {
-						presets: ['@babel/preset-env'],
-					},
 				},
 			},
 			{
-				test: /\.html$/i,
-				loader: 'html-loader',
+				test: /\.(s[ac]|c)ss$/i,
+				use: [
+					MiniCssExtractPlugin.loader,
+					'css-loader',
+					'sass-loader',
+					'postcss-loader'
+				],
 			},
 		],
+	},
+
+	devtool: 'source-map',
+
+	devServer: {
+		contentBase: './dist',
 	},
 };
