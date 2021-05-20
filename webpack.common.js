@@ -1,23 +1,15 @@
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require("path")
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 
-const mode =
-	process.env.NODE_ENV === 'production' ? 'production' : 'development';
-
 module.exports = {
-	mode: mode,
-
 	entry: './src/index.js',
-	output: {
-		filename: 'bundle.[contentHash].js',
-		path: path.resolve(__dirname, 'dist'),
-	},
 
 	plugins: [
 		new MiniCssExtractPlugin(),
 		new HtmlWebPackPlugin({
-			template: "./src/template.html"
+			template: "./src/template.html",
+			title: 'Production',
 		})
 	],
 
@@ -44,8 +36,4 @@ module.exports = {
 	},
 
 	devtool: 'source-map',
-
-	devServer: {
-		contentBase: './dist',
-	},
 };
