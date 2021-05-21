@@ -1,20 +1,12 @@
 const path = require("path")
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const HtmlWebPackPlugin = require('html-webpack-plugin')
 
 module.exports = {
 	entry: './src/index.js',
 
 	output: {
-		assetModuleFilename: '[name][hash][ext]'
+		assetModuleFilename: '[name][hash][ext]',
+		clean: true
 	},
-	plugins: [
-		new MiniCssExtractPlugin(),
-		new HtmlWebPackPlugin({
-			template: "./src/template.html",
-			title: 'Production',
-		})
-	],
 
 	module: {
 		rules: [
@@ -27,20 +19,11 @@ module.exports = {
 				},
 			},
 			{
-				test: /\.(s[ac]|c)ss$/i,
-				use: [
-					MiniCssExtractPlugin.loader,
-					'css-loader',
-					'sass-loader',
-					'postcss-loader'
-				],
-			},
-			{
 				test: /\.html$/,
 				use: ["html-loader"]
 			},
 			{
-				test: /\.(png|jpg|gif)$/,
+				test: /\.(ico|jpeg|png|jpg|gif)$/,
 				type: 'asset/resource'
 			},
 			{
